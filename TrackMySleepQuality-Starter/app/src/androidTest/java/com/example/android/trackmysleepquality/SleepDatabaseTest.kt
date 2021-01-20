@@ -72,12 +72,15 @@ class SleepDatabaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun insertAndGet() {
+    fun getAndClear() {
         val night = SleepNight()
         sleepDao.insert(night)
 
         val nthNight = sleepDao.get(1)
         assertEquals(nthNight?.sleepQuality, -1)
+
+        sleepDao.clear()
+        assertEquals(sleepDao.get(1), null)
     }
 
     @Test
